@@ -1,21 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 [CreateAssetMenu(fileName = "SpritesData")]
+
 public class ScriptableObjects : ScriptableObject
 {
+    [SerializeField]List<CardDeck> cardDecks;
+    public List<CardDeck> CArdDecks
+    {
+        get
+        {
+            return cardDecks;
+        }
+    }
 
-    
+
+
+
+
+    //static ScriptableObjects instance;
+    //public static ScriptableObjects Instance
+    //{
+    //    get
+    //    {
+    //        if (instance != null)
+    //            instance = FindObjectOfType<ScriptableObjects>();
+    //        if (instance == null)
+    //            Debug.LogError("Scriptable object not found");
+    //        return instance;
+    //    }
+    //}
+
+   
+  
+}
+[System.Serializable]
+public class CardDeck
+{
+
     [SerializeField] Sprite[] itemSprites;
-    public Sprite[]ItemSprites
+    public Sprite[] ItemSprites
     {
         get { return itemSprites; }
     }
 
     [SerializeField]
-    private Sprite[] cardSet;
-    public Sprite[] CardSet
+    private Sprite cardSet;
+    public Sprite CardSet
     {
         get { return cardSet; }
         //set { cardSet = value; }
@@ -28,6 +60,7 @@ public class ScriptableObjects : ScriptableObject
         get { return containers; }
         set { containers = value; }
     }
+
     [SerializeField]
     private Sprite backGround;
     public Sprite BackGround
@@ -37,26 +70,21 @@ public class ScriptableObjects : ScriptableObject
     }
 
     [SerializeField]
-    private GameObject checkItembox;
-    public GameObject CheckItemBox
+    private Sprite verifyImage;
+    public Sprite VerifyImage
     {
-        get { return checkItembox; }
-        set { checkItembox = value; }
+        get { return verifyImage; }
+        set { verifyImage = value; }
     }
 
-    static ScriptableObject instance;
-    public static ScriptableObject Instance
+    [SerializeField]
+    private string texts;
+    public string Texts
     {
-        get
-        {
-            if (instance != null)
-                instance = FindObjectOfType<ScriptableObject>();
-            if (instance == null)
-                Debug.LogError("Scriptable object not found");
-            return instance;
-        }
+        get { return texts; }
+        set { texts = "6/20"; }
     }
 
-   
-  
+
+
 }

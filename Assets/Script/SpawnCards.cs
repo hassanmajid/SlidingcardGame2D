@@ -8,54 +8,62 @@ public class SpawnCards : MonoBehaviour
    
     [SerializeField] ScriptableObjects script;
     [SerializeField] Transform pos;
-    //[SerializeField] GameObject spawnee;
-
-     //Sprite cards;
-
-    //[SerializeField] GameObject cardStack;
-    
-    //Sprite[] CardSets;
-
-    public GameObject CardSet1;
+    public GameObject Cardprefab;
     
 
+   
+    
+    
     // Update is called once per frame
     void Update()
     {
         
     }
-
+     
     void Start()
     {
         SpawnCard();
         
     }
-  
+
     public void SpawnCard()
     {
-        ////Background = script.BackGround;
-        //Sprite temp = cardStack.transform.GetChild(0).GetComponent<Sprite>();
-        //temp = script.CardSet[0];
 
-        CardPrefabController cardPrefabController = Instantiate(CardSet1, pos).GetComponent<CardPrefabController>();
 
-        cardPrefabController.cards.sprite = script.CardSet[0];
-        
 
-        Instantiate(cardPrefabController.cards.sprite, pos);
-        for (int i = 0; i <= 3; i++)
+        for (int k = 0; k < 3; k++)
         {
+            CardPrefabController cardPrefabController = Instantiate(Cardprefab, pos).GetComponent<CardPrefabController>();
 
-            cardPrefabController.imageItems[i].sprite = script.ItemSprites[i];
-            Instantiate(cardPrefabController.imageItems[i].sprite, pos);
+            //Instantiating Cards
+            cardPrefabController.cards.sprite = script.CArdDecks[k].CardSet;
+
+
+            //Instantiating BackGround
+            for (int i = 0; i <= 3; i++)
+            {
+
+                cardPrefabController.containers[i].sprite = script.CArdDecks[k].Containers[0];
+
+            }
+
+            //Instantiating Items
+
+            for (int i = 0; i <= 3; i++)
+            {
+                cardPrefabController.imageItems[i].sprite = script.CArdDecks[k].ItemSprites[i];
+            }
+
+            //instantiating verifiedSprite and count
+
+            cardPrefabController.AddMouseEventListner(script.CArdDecks[0].VerifyImage, script.CArdDecks[k].Containers[1]);
+            cardPrefabController.StartTimer();
 
         }
 
 
-
-
     }
-   
 
-   
+
+
 }

@@ -464,7 +464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   script: {fileID: 11400000, guid: 14fa51116c45a42979ca9ac8705f781e, type: 2}
   pos: {fileID: 1375117860}
-  CardSet1: {fileID: 7985466403016043580, guid: 929aa7d600aca4af9b1d7498c0c51bad, type: 3}
+  Cardprefab: {fileID: 7985466403016043580, guid: 929aa7d600aca4af9b1d7498c0c51bad, type: 3}
 --- !u!4 &613952843
 Transform:
   m_ObjectHideFlags: 0
@@ -1833,7 +1833,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Kindly Await For Further Instructions !
 --- !u!222 &1988782365
 CanvasRenderer:
   m_ObjectHideFlags: 0
