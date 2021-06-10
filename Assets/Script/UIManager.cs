@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     
     public RectTransform showBackground, showBottomOfShop, showTopOfShop, showLeftSide, showRightSide, slidingBox;
     float delay;
-
+    float position;
     #region Getter
     static UIManager instance;
     public static UIManager Instance
@@ -32,8 +32,9 @@ public class UIManager : MonoBehaviour
 
         ShowBackground();
         ShowBottomOfShop(delay);
-        SlidingBox(delay);
         ShowTopOfShop(delay);
+        SlidingBox(delay);
+        
         ShowLeftSide(delay);
         ShowRightSide(delay);
        
@@ -42,39 +43,55 @@ public class UIManager : MonoBehaviour
     public void ShowBackground(float delay = 0f)
     {
         showBackground.DOAnchorPosX(0, 0f);
-        showBackground.DOScale(new Vector3((float)1, (float)1, (float)1), 1.1f).SetDelay(delay);
+        showBackground.DOScale(new Vector3((float)1, (float)1, (float)1), 0.5f).SetDelay(delay);
     }
 
     public void ShowBottomOfShop(float delay = 0f)
     {
-        showBottomOfShop.DOAnchorPosY(0, 0.5f).SetDelay(delay);
-        //showBottomOfShop.DOLocalMove(new Vector3((float)0, (float)50, (float)0), 2.1f, true);//.SetDelay(delay);
+        position = showBottomOfShop.position.y * -1;
+        showBottomOfShop.DOAnchorPosY(position, 0.0f);
+        showBottomOfShop.DOAnchorPosY(position*-1, 0.5f).SetDelay(delay+0.5f);
+
     }
 
     public void ShowTopOfShop(float delay = 0f)
     {
-        showTopOfShop.DOAnchorPosY(0, 0.5f).SetDelay(delay);
-        //showTopOfShop.DOLocalMove(new Vector3((float)0, (float)50, (float)0), 2.1f, true);//.SetDelay(delay);
+        position = showTopOfShop.anchoredPosition.y;
+
+        Debug.Log("Top side " + position);
+
+        showTopOfShop.DOAnchorPosY(position*-1, 0.0f);
+        showTopOfShop.DOAnchorPosY(position, 0.5f).SetDelay(delay+0.5f);
+
     }
 
     public void ShowLeftSide(float delay = 0f)
     {
-        showLeftSide.DOAnchorPosX(28, 0.5f).SetDelay(delay);
-        showLeftSide.DOAnchorPosX(0, 0.5f).SetDelay(delay+0.5f);
-        //showTopOfShop.DOLocalMove(new Vector3((float)0, (float)50, (float)0), 2.1f, true);//.SetDelay(delay);
+        position = showLeftSide.anchoredPosition.x;
+
+        showLeftSide.DOAnchorPosX(position*-1, 0.0f);
+        showLeftSide.DOAnchorPosX(position-30, 0.5f).SetDelay(delay);
+        showLeftSide.DOAnchorPosX(position, 0.5f).SetDelay(delay+0.5f);
+       
     }
 
     public void ShowRightSide(float delay = 0f)
     {
-        showRightSide.DOAnchorPosX(-28, 0.5f).SetDelay(delay);
-        showRightSide.DOAnchorPosX(0, 0.5f).SetDelay(delay+0.5f);
-        //showTopOfShop.DOLocalMove(new Vector3((float)0, (float)50, (float)0), 2.1f, true);//.SetDelay(delay);
+        position = showRightSide.anchoredPosition.x;
+        Debug.Log("Right side "+position);
+
+        showRightSide.DOAnchorPosX(position *-1, 0.0f);
+        showRightSide.DOAnchorPosX(position-30, 0.5f).SetDelay(delay);
+        showRightSide.DOAnchorPosX(position, 0.5f).SetDelay(delay+0.5f);
+        
     }
     public void SlidingBox(float delay = 0f)
     {
-
-        slidingBox.DOAnchorPosX(200, 0.5f).SetDelay(delay);
-        slidingBox.DOAnchorPosX(303, 0.5f).SetDelay(delay+0.5f);
+        position=slidingBox.anchoredPosition.x;
+        slidingBox.DOAnchorPosX(position*1500, 0.0f);
+        slidingBox.DOAnchorPosX(position+10, 0.5f).SetDelay(delay);
+        slidingBox.DOAnchorPosX(position, 0.5f).SetDelay(delay+0.5f);
+       
 
     }
 }
